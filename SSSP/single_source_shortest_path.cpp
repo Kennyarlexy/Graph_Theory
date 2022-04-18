@@ -36,14 +36,13 @@ void topSort() {
     }
 }
 
-//next.first = next node
-//next.second = next node's distance
-//dist[current] = currently shortest distance of current node from root
 void sssp() {
     for (int i = 1; i <= 6; i++) {
         int current = order[i];
-        for (auto& next : adj[current]) {
-            dist[next.first] = fmin(dist[next.first], dist[current] + next.second);
+        for (auto& edgeTo : adj[current]) {
+            int nextNode = edgeTo.first;
+            int weight = edgeTo.second;
+            dist[nextNode] = fmin(dist[nextNode], dist[current] + weight);
         }
     }
 }
